@@ -33,8 +33,6 @@ export function useLoadColors(numOfOptions: number) {
         });
       }
       const data: ColorProps[] = await db.getAllValues();
-      await db.deleteTable();
-      await db.reset();
       data.map(item => {
         imageArr.push(<Color key={`${item.r}_${item.g}_${item.b}`} {...item} />);
       });
