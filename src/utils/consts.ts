@@ -1,8 +1,8 @@
 /**
  * Image width to render
  */
-export const IMAGE_WIDTH = 128; //process.env.REACT_APP_IMAGE_WIDTH;
+export const IMAGE_WIDTH = process.env.REACT_APP_IMAGE_WIDTH;
 /**
  * Image height to render
  */
-export const IMAGE_HEIGHT = 256; //process.env.REACT_APP_IMAGE_HEIGHT;
+export const IMAGE_HEIGHT = process.env.REACT_APP_IMAGE_HEIGHT;
