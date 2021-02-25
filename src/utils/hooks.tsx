@@ -1,7 +1,21 @@
 import * as React from 'react';
 import { Color, ColorProps } from 'components';
 import Worker from 'worker';
-import { consts, getStorage } from 'utils';
+import IndexedDb from './indexedDb';
+import { consts } from 'utils';
+
+/**
+ * get reference to the database utility class. Throws exception if unable to create
+ * @param showLog support logs
+ */
+async function getStorage(showLog = false): Promise<IndexedDb> {
+  const db = new IndexedDb(showLog);
+  const isCreated = await db.createTable();
+  if (!isCreated) {
+    throw new Error('Unable to create the database with provided table');
+  }
+  return db;
+}
 
 export function useLoadColors(numOfOptions: number) {
   const [renderedImage, setRenderedImage] = React.useState<JSX.Element[]>([
