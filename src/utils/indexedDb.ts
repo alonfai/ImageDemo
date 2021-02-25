@@ -14,7 +14,6 @@ const Table_Name = 'imageobjectstore';
             const indexedDb = new IndexedDb('test');
             await indexedDb.createObjectStore(['books', 'students']);
             await indexedDb.putValue('books', { name: 'A Game of Thrones' });
-            await indexedDb.putBulkValue('books', [{ name: 'A Song of Fire and Ice' }, { name: 'Harry Potter and the Chamber of Secrets' }]);
             await indexedDb.getValue('books', 1);
             await indexedDb.getAllValue('books');
             await indexedDb.deleteValue('books', 1);
@@ -124,39 +123,18 @@ class IndexedDb {
   /**
    * Add the values in the field. Returns the resulting put value
    * @param value the value to put in
-   * @param key optional key to use (otherwise use default asc id)
    */
-  public async putValue(value: any, key?: string): Promise<IDBValidKey> {
+  public async putValue(value: any): Promise<IDBValidKey> {
     if (!this.db) {
       throw new Error('this.db was not initialized');
     }
-    const result = await this.db.put(Table_Name, value, key);
+    const result = await this.db.put(Table_Name, value);
     // Other way using regular transaction:
     // ------------------------------------
     if (this.showLog) {
       console.log('Put Data ', JSON.stringify(result));
     }
     return result;
-  }
-
-  /**
-   * Insert values in bulk. Returns an array of result values
-   * @param values An array of values to be inserted
-   */
-  public async putBulkValue(values: { key: string }[]): Promise<any[]> {
-    if (!this.db) {
-      throw new Error('this.db was not initialized');
-    }
-    const tx = this.db.transaction(Table_Name, 'readwrite');
-    const store = tx.objectStore(Table_Name);
-    for (const [index, value] of values.entries()) {
-      const { key, ...rest } = value;
-      const result = await store.put(rest, key);
-      if (this.showLog) {
-        console.log(`Put Bulk Data #${index}`, JSON.stringify(result));
-      }
-    }
-    return this.getAllValues();
   }
 
   /**

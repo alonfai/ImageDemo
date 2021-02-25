@@ -41,7 +41,7 @@ export const getRandomColor: () => Interfaces.Color = () => {
  * @param {Color} c color object
  */
 const generateKey: (c: Interfaces.Color) => string = (c: Interfaces.Color) => {
-  return `r-${c.r}&g-${c.g}&b-${c.b}`;
+  return `${c.r}&${c.g}&${c.b}`;
 };
 
 /**
