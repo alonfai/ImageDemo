@@ -14,7 +14,7 @@ The final result is then printed to the screen
 
 In this project, the main npm modules used are
 
-* Node 12.x
+* Node 12.x+
 * React 16.8+ with React hooks
 * Typescript 4
 * comlink-loader (assist with web worker communication)
@@ -40,6 +40,19 @@ npm install
 ```
 
 ***
+
+### Instructions
+
+This project uses environment variables to set the deisred image dimensions to be set.
+
+* `REACT_APP_IMAGE_WIDTH` - Image width
+* `REACT_APP_IMAGE_HEIGHT` - Image height
+
+In order to create a different dimension, please update the value in the given `.env` file beforehand running any of given scripts
+
+## Assumptions
+
+The project uses web workers as well as the IndexedDb storage system for asyncronous processing of large amounts of data
 
 ## Available Scripts
 
