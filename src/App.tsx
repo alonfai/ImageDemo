@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { consts, hooks, Interfaces } from 'utils';
+import { consts, hooks } from 'utils';
 import { Grid } from 'components';
 import { ITEM_INTESITY } from 'processData';
-
-type ResultType = Interfaces.Color & Interfaces.Position;
 
 function App() {
   /**
